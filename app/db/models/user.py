@@ -7,7 +7,7 @@ class User(Base):
     __tablename__ = "users"
 
     # Primary Key
-    user_id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(String, primary_key=True, index=True)
 
     # Basic Info
     employee_id = Column(String(50), unique=True, nullable=False)

@@ -15,3 +15,10 @@ class Attendance(Base):
     selfie = Column(String(1024), nullable=True)
 
     user = relationship("User", back_populates="attendances")
+@property
+def user_name(self):
+        return self.user.name if self.user else None
+
+@property
+def department(self):
+        return self.user.department if self.user else None
