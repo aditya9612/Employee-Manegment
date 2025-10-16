@@ -28,7 +28,7 @@ def verify_user(email: str, otp: int, db: Session = Depends(get_db)):
         "access_token": token,
         "token_type": "bearer",
         "role": user.role,
-        "user_id": user.user_id,
+        "employee_id": user.employee_id,
         "email": user.email,
         "name": user.name
     }

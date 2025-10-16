@@ -7,10 +7,10 @@ class User(Base):
     __tablename__ = "users"
 
     # Primary Key
-    user_id = Column(String, primary_key=True, index=True)
+    user_id = Column(Integer, primary_key=True, index=True)
 
     # Basic Info
-    employee_id = Column(String(50), unique=True, nullable=False)
+    employee_id = Column(String(500), unique=True, nullable=False)
     name = Column(String(255), nullable=False)
     email = Column(String(255), unique=True, index=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
@@ -33,7 +33,9 @@ class User(Base):
     resignation_date = Column(DateTime(timezone=True), nullable=True)
 
     # Profile & verification
-    profile_photo = Column(String(1024), nullable=True)
+    # Profile & verification
+    profile_photo = Column(String(1024), nullable=True)  # stores path to profile photo
+
     is_verified = Column(Boolean, default=False)
 
     # Timestamps

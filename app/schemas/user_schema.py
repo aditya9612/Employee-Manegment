@@ -18,13 +18,14 @@ class UserBase(BaseModel):
     shift_type: Optional[str] = None
 
 class UserCreate(UserBase):
-    password: str  # plain password, will be hashed
+    password: Optional[str]  # plain password, will be hashed
     employee_id: str
 
 class UserOut(UserBase):
     user_id: int
     employee_id: str
     is_verified: bool
+    is_active: bool 
     profile_photo: Optional[str] = None
     created_at: datetime
 

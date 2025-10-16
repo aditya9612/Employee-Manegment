@@ -12,11 +12,11 @@ router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
 @router.post("/", response_model=TaskOut)
 def assign_task(task: TaskCreate, db: Session = Depends(get_db), user = Depends(get_current_user)):
-    return create_task(db, task.title, task.description, user.user_id, task.assigned_to, task.due_date)
+    return create_task(db, task.title, task.description, user.employee_id, task.assigned_to, task.due_date)
 
 @router.get("/", response_model=list[TaskOut])
 def my_tasks(db: Session = Depends(get_db), user = Depends(get_current_user)):
-    return list_tasks(db, user.user_id)
+    return list_tasks(db, user.employee_id)
 
 @router.put("/{task_id}/status", response_model=TaskOut)
 def update_status(task_id: int, status: TaskStatus, db: Session = Depends(get_db), user = Depends(get_current_user)):

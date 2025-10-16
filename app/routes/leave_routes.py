@@ -7,6 +7,7 @@ from app.db.database import get_db
 from app.crud.leave_crud import apply_leave, approve_leave as approve_leave_db, list_leave
 from app.dependencies import get_current_user, require_roles
 from app.schemas.leave_schema import LeaveCreate, LeaveOut
+from app.enums import RoleEnum
 
 router = APIRouter(prefix="/leave", tags=["Leave"])
 
@@ -25,7 +26,7 @@ def request_leave(
 def approve_leave_request(
     leave_id: int,
     db: Session = Depends(get_db),
-    _=Depends(require_roles("Manager", "Admin"))
+    _=Depends(require_roles(RoleEnum.MANAGER, RoleEnum.ADMIN))
 ):
     leave = approve_leave_db(db, leave_id)
     if not leave:
